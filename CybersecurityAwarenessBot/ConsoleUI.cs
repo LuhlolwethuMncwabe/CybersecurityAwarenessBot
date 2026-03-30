@@ -21,6 +21,7 @@ namespace CybersecurityAwarenessBot
             Console.ForegroundColor = ConsoleColor.Green;
             PrintDivider();
             Console.ResetColor();
+            System.Threading.Thread.Sleep(1000);
         }
 
         public static void PrintDivider()
@@ -37,9 +38,21 @@ namespace CybersecurityAwarenessBot
             Console.WriteLine("  [ " + title.ToUpper() + " ]");
             PrintDivider();
             Console.ResetColor();
-
-
         }
+
+        public static void TypeWrite(string message, int delay = 25)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            foreach (char c in message)
+            {
+                Console.Write(c);
+                System.Threading.Thread.Sleep(delay);
+            }
+            Console.WriteLine();
+            Console.ResetColor();
+        }
+
+        
         public static string GetUserName()
         {
             string name = "";
@@ -62,22 +75,21 @@ namespace CybersecurityAwarenessBot
         public static void DisplayWelcome(string userName)
         {
             PrintDivider();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"\n  Welcome, {userName}! I am your Cybersecurity Awareness Bot.");
-            Console.WriteLine("  I am here to help you stay safe online.\n");
+            TypeWrite($"\n  Welcome, {userName}! I am your Cybersecurity Awareness Bot.");
+            TypeWrite("  I am here to help you stay safe online.\n");
             PrintDivider();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("\n  Type 'help' to see what I can assist you with.");
-            Console.WriteLine("  Type 'quit' or 'exit' to leave.\n");
+            TypeWrite("\n  Type 'help' to see what I can assist you with.");
+            TypeWrite("  Type 'quit' or 'exit' to leave.\n");
             Console.ResetColor();
         }
-
+        
         public static void DisplayBotResponse(string response)
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.Write("\n  Bot: ");
             Console.ResetColor();
-            Console.WriteLine(response);
+            TypeWrite(response);
             Console.WriteLine();
         }
 
