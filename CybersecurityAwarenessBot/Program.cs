@@ -14,9 +14,16 @@ namespace CybersecurityAwarenessBot
             Console.WriteLine("Cybersecurity Awareness Bot is Starting...");
             AudioGreeting.GreetWelcome();
 
-            Console.ReadLine();
+            ConsoleUI.DisplayLogo();
 
+            ConsoleUI.PrintHeader("Main Menu");
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
             
         }
     }
 }
+
+    
+
