@@ -10,6 +10,8 @@ namespace CybersecurityAwarenessBot
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Cybersecurity Awareness Bot is Starting...");
+            Console.ReadLine();
         }
     }
 }
