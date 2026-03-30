@@ -22,24 +22,47 @@ namespace CybersecurityAwarenessBot
             ConsoleUI.DisplayWelcome(userName);
 
             string input = "";
-            while (input.ToLower() != "quit" && input.ToLower() != "exit")
+            while (true)
             {
+
                 input = ConsoleUI.GetUserInput(userName);
-                if (input.ToLower() == "help")
+
+                // Skip empty input
+                if (string.IsNullOrWhiteSpace(input))
                 {
-                    ConsoleUI.DisplayBotResponse("I can help you with tips on staying safe online!");
+                    ConsoleUI.DisplayBotResponse("You did not type anything. Please enter a message.");
+                    continue;
                 }
-                else if (input.ToLower() != "quit" && input.ToLower() != "exit")
+
+                // Get response from ResponseEngine
+                string response = ResponseEngine.GetResponse(input);
+
+                // Handle quit
+                if (response == "QUIT" || input.ToLower() == "quit" || input.ToLower() == "exit")
                 {
-                    ConsoleUI.DisplayBotResponse("Sorry, I don't understand that command.");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"\n  Goodbye, {userName}! Stay safe online.");
+                    Console.ResetColor();
+                    ConsoleUI.PrintDivider();
+                    break;
                 }
+
+                // Handle no match found
+                if (response == null)
+                {
+                    ConsoleUI.DisplayBotResponse("I did not quite understand that. Could you rephrase? (Type 'help' to see topics.)");
+                    continue;
+                }
+
+                // Display the matched response
+                ConsoleUI.DisplayBotResponse(response);
             }
-            Console.WriteLine("\nThank you for using the Cybersecurity Awareness Bot. Stay safe online!");
+
+            Console.WriteLine("\nPress any key to exit...");
             Console.ReadKey();
-            
         }
     }
 }
-
-    
+            
+            
 
