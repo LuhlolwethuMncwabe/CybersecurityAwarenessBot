@@ -27,17 +27,17 @@ namespace CybersecurityAwarenessBot
 
                 input = ConsoleUI.GetUserInput(userName);
 
-                // Skip empty input
-                if (string.IsNullOrWhiteSpace(input))
+
+                ValidationResult validation = InputValidator.Validate(input);
+                if (!validation.IsValid)
                 {
-                    ConsoleUI.DisplayBotResponse("You did not type anything. Please enter a message.");
+                    ConsoleUI.DisplayBotResponse(validation.ErrorMessage);
                     continue;
                 }
 
-                // Get response from ResponseEngine
                 string response = ResponseEngine.GetResponse(input);
 
-                // Handle quit
+                
                 if (response == "QUIT" || input.ToLower() == "quit" || input.ToLower() == "exit")
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -47,18 +47,17 @@ namespace CybersecurityAwarenessBot
                     break;
                 }
 
-                // Handle no match found
+
                 if (response == null)
                 {
-                    ConsoleUI.DisplayBotResponse("I did not quite understand that. Could you rephrase? (Type 'help' to see topics.)");
+                    ConsoleUI.DisplayBotResponse(InputValidator.DefaultResponse());
                     continue;
                 }
 
-                // Display the matched response
                 ConsoleUI.DisplayBotResponse(response);
             }
 
-            Console.WriteLine("\nPress any key to exit...");
+            Console.WriteLine("\nPress any key to exit.");
             Console.ReadKey();
         }
     }

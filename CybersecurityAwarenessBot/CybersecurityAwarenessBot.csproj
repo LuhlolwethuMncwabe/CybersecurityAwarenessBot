@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="AudioGreeting.cs" />
     <Compile Include="ConsoleUI.cs" />
+    <Compile Include="InputValidator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseEngine.cs" />
