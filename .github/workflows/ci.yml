@@ -17,14 +17,8 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v2
-
-      - name: Restore NuGet packages
-        run: nuget restore "CybersecurityAwarenessBot/CybersecurityAwarenessBot.sln"
-
       - name: Build solution
-        run: msbuild "CybersecurityAwarenessBot/CybersecurityAwarenessBot.sln" /p:Configuration=Release
+        run: msbuild "CybersecurityAwarenessBot.slnx" /p:Configuration=Release
 
       - name: Confirm build success
         run: echo "Build completed successfully!"
